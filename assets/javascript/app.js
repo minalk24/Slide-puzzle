@@ -119,4 +119,24 @@ emptyObj.clickedValue = 0;
         else return false;
       }
     
-      
+      function checkRight(){
+        if( (emptyObj.clickIndex[1] + 1) === emptyObj.emptyTiles[1] && (emptyObj.clickIndex[0]) === emptyObj.emptyTiles[0]){
+          emptyObj.isEmptyTileAvailAdjacent = true;
+          return true;
+        }
+        else return false;
+      }
+    
+      function swapTiles(){
+        var filledTileIndex = _.findIndex(emptyObj.initialValues, { 'row' : parseInt(emptyObj.clickIndex[0]), 'column' : parseInt(emptyObj.clickIndex[1])});
+        var emptyTileIndex = _.findIndex(emptyObj.initialValues, { 'row' : parseInt(emptyObj.emptyTiles[0]), 'column' : parseInt(emptyObj.emptyTiles[1])});
+  
+        var number = filledTileIndex  + 1;
+        var emptyNumber = emptyTileIndex  + 1;
+        console.log("emptyTileIndex"+ emptyTileIndex +":"+"filledTileIndex"+filledTileIndex);
+        $("ul li:eq("+emptyTileIndex+")").replaceWith('<li class="Tile Tile'+number+'">'+number+'</li>');
+        $("ul li:eq("+filledTileIndex+")").replaceWith('<li class="Tile Tile9" style="visibility: hidden">9</li>');
+        
+        $(".SlidingPuzzle li.Tile").unbind();
+        initialze();
+      }
