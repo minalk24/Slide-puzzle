@@ -31,5 +31,6 @@ figcaption{
       text-align: center;
       padding-top: 8px;
       background: #fff;
+      cursor: pointer;
     }
       
