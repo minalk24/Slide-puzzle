@@ -49,3 +49,74 @@ emptyObj.clickedValue = 0;
           });
       }
   
+
+      function findEmptyTilePosition(){
+        var emptyTilePos = _.find(emptyObj.initialValues, { 'value': 9 });
+        return [emptyTilePos.row, emptyTilePos.column];
+      }
+      
+      function CheckIfEmptyTilePresentNear(){
+        console.log(emptyObj.clickIndex);
+        //reinitialse before checking tile position
+        emptyObj.isEmptyTileAvailAdjacent = false;
+        
+        //logic to check top and bottom
+        //check top according to row number
+        if(emptyObj.clickIndex[0] === 1 || emptyObj.clickIndex[0] === 2){
+          returnedValue = checkTop();
+          if(returnedValue == true){
+            return true;
+          }
+        }
+        //check bottom according to row number
+        if(emptyObj.clickIndex[0] === 0 || emptyObj.clickIndex[0] === 1){
+          returnedValue = checkBottom();
+          if(returnedValue == true){
+            return true;
+          }
+        }
+        
+        //logic to check left and right
+        //check left according to row number
+        if(emptyObj.clickIndex[1] === 1 || emptyObj.clickIndex[1] === 2){
+          returnedValue = checkLeft();
+          if(returnedValue == true){
+            return true;
+          }
+        }
+        //check right according to row number
+        if(emptyObj.clickIndex[1] === 0 || emptyObj.clickIndex[1] === 1){
+          returnedValue = checkRight();
+          if(returnedValue == true){
+            return true;
+          }
+        }
+  
+        return false;
+      }
+    
+      function checkTop(){
+        if( (emptyObj.clickIndex[0] - 1) === emptyObj.emptyTiles[0] && (emptyObj.clickIndex[1]) === emptyObj.emptyTiles[1]){
+          emptyObj.isEmptyTileAvailAdjacent = true;
+          return true;
+        }
+        else return false;
+      }
+    
+      function checkBottom(){
+        if( (emptyObj.clickIndex[0] + 1) === emptyObj.emptyTiles[0] && (emptyObj.clickIndex[1]) === emptyObj.emptyTiles[1]){
+          emptyObj.isEmptyTileAvailAdjacent = true;
+          return true;
+        }
+        else return false;
+      }
+    
+      function checkLeft(){
+        if( (emptyObj.clickIndex[1] - 1) === emptyObj.emptyTiles[1] && (emptyObj.clickIndex[0]) === emptyObj.emptyTiles[0]){
+          emptyObj.isEmptyTileAvailAdjacent = true;
+          return true;
+        }
+        else return false;
+      }
+    
+      
